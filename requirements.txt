@@ -9,7 +9,7 @@ base58==2.1.0
 bitarray==1.2.2
 black==21.9b0
 Brownie==0.5.1
-certifi==2021.5.30
+certifi==2021.10.8
 cffi==1.15.0
 chardet==4.0.0
 charset-normalizer==2.0.6
@@ -22,6 +22,7 @@ defusedxml==0.7.1
 dj-database-url==0.5.0
 Django==4.0.3
 django-allauth==0.49.0
+django-crispy-forms==1.14.0
 eip712==0.1.0
 eth-abi==2.1.1
 eth-account==0.5.5
@@ -81,6 +82,7 @@ python-dateutil==2.8.1
 python-dotenv==0.16.0
 python3-openid==3.2.0
 pythx==1.6.1
+pytube==12.0.0
 PyYAML==5.4.1
 regex==2021.8.28
 requests==2.26.0

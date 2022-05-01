@@ -13,10 +13,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                {% for year in years %}
-                    {% for edition in editions %}
-                        <h3>{{ year.year }}</h3>
-                    {% endfor %}
+                {% for edition in editions %}
+                    <h3><a href="{% url 'get_edition' edition.id %}">{{ edition.year }}</a></h3>
                 {% endfor %}
             </div>
         </div>
