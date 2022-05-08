@@ -5,11 +5,10 @@ from .models import Song
 class SongAdmin(admin.ModelAdmin):
     list_display = (
         "edition",
-        "year",
         "title",
         "artist",
         "album",
-        #         "featured_artists",
+        # "featured_artists",
         "audio",
     )
 

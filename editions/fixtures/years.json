@@ -1,0 +1,234 @@
+[
+    {
+        "pk": 1,
+        "model": "editions.year",
+        "fields": {
+            "year": 1994,
+            "short_year": "94"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "editions.year",
+        "fields": {
+            "year": 1995,
+            "short_year": "95"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "editions.year",
+        "fields": {
+            "year": 1996,
+            "short_year": "96"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "editions.year",
+        "fields": {
+            "year": 1997,
+            "short_year": "97"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "editions.year",
+        "fields": {
+            "year": 1998,
+            "short_year": "98"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "editions.year",
+        "fields": {
+            "year": 1999,
+            "short_year": "99"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "editions.year",
+        "fields": {
+            "year": 2000,
+            "short_year": "00"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "editions.year",
+        "fields": {
+            "year": 2001,
+            "short_year": "01"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "editions.year",
+        "fields": {
+            "year": 2002,
+            "short_year": "02"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "editions.year",
+        "fields": {
+            "year": 2003,
+            "short_year": "03"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "editions.year",
+        "fields": {
+            "year": 2004,
+            "short_year": "04"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "editions.year",
+        "fields": {
+            "year": 2005,
+            "short_year": "05"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "editions.year",
+        "fields": {
+            "year": 2006,
+            "short_year": "06"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "editions.year",
+        "fields": {
+            "year": 2007,
+            "short_year": "07"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "editions.year",
+        "fields": {
+            "year": 2008,
+            "short_year": "08"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "editions.year",
+        "fields": {
+            "year": 2009,
+            "short_year": "09"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "editions.year",
+        "fields": {
+            "year": 2010,
+            "short_year": "10"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "editions.year",
+        "fields": {
+            "year": 2011,
+            "short_year": "11"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "editions.year",
+        "fields": {
+            "year": 2012,
+            "short_year": "12"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "editions.year",
+        "fields": {
+            "year": 2013,
+            "short_year": "13"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "editions.year",
+        "fields": {
+            "year": 2014,
+            "short_year": "14"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "editions.year",
+        "fields": {
+            "year": 2015,
+            "short_year": "15"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "editions.year",
+        "fields": {
+            "year": 2016,
+            "short_year": "16"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "editions.year",
+        "fields": {
+            "year": 2017,
+            "short_year": "17"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "editions.year",
+        "fields": {
+            "year": 2018,
+            "short_year": "18"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "editions.year",
+        "fields": {
+            "year": 2019,
+            "short_year": "19"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "editions.year",
+        "fields": {
+            "year": 2020,
+            "short_year": "20"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "editions.year",
+        "fields": {
+            "year": 2021,
+            "short_year": "21"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "editions.year",
+        "fields": {
+            "year": 2022,
+            "short_year": "22"
+        }
+    }
+]

@@ -40,14 +40,9 @@
     <title>Fifa Bangers {% block extra_title %}{% endblock %}</title>
 </head>
 <body>
-    <header class="container-fluid">
+    <header class="container-fluid fixed-top">
         <div id="topnav" class="row">
-            <div class="col-12 col-lg-4">
-                <a href="{% url 'home' %}" class="nav-link">
-                    <h2>Fifa Bangers</h2>
-                </a>
-            </div>
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-lg-4 offset-lg-4">
                 <form action="" method="GET">
                     <div class="input-group w-100">
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
@@ -61,12 +56,17 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            {% include 'includes/navbar.html' %}
+        </div>
     </header>
     {% block page_header %}
     {% endblock %}
 
     {% block content %}
     {% endblock %}
+
+    <footer></footer>
 
     {% block postloadjs %}
     {% endblock %}

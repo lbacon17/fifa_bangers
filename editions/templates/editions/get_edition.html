@@ -2,5 +2,34 @@
 {% load static %}
 
 {% block content %}
-    <h1>{{ edition.year }}</h1>
+    <a href="{% url 'editions' %}">Back to all editions</a>
+    <h1>{{ edition.edition_name }} ({{ edition.year }})</h1>
+    <div class="image-container">
+        {% if edition.cover %}
+            <img src="{{ edition.cover.url }}" alt="{{ edition.edition_name }} cover">
+        {% else %}
+            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ edition.edition_name }}" class="img-thumbnail">
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <h3>Songs from {{ edition.edition_name }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                {% for song in songs %}
+                    <h5>Track: {{ song.title }}</h5>
+                    <h5>Artist: {{ song.artist }}</h5>
+                    <h5>Album: {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}</h5>
+                    <h5>
+                        <audio controls src="{{ song.audio }}" type="audio/mpeg">
+                            Your browser does not support playback of this file.
+                        </audio>
+                    </h5>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

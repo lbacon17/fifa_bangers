@@ -1,0 +1,349 @@
+[
+    {
+        "pk": 1,
+        "model": "editions.edition",
+        "fields": {
+            "year": 1,
+            "edition_name": "FIFA International Soccer",
+            "release_date": "1993-12-15",
+            "publisher": "EA Sports",
+            "cover": "covers/1994_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/40/a9/fifa-video-game-covers_xuuvh78drqzq1v02jbne13cte.jpg?t=-1302273692"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "editions.edition",
+        "fields": {
+            "year": 2,
+            "edition_name": "FIFA Soccer 95",
+            "release_date": "1994-11-10",
+            "publisher": "EA Sports",
+            "cover": "covers/1995_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/d3/67/fifa-video-game-covers_gtw4e7htgbzl1qgjo7p6lhvi5.jpg?t=-1302273692"
+        }
+    }, 
+    {
+        "pk": 3,
+        "model": "editions.edition",
+        "fields": {
+            "year": 3,
+            "edition_name": "FIFA Soccer 96",
+            "release_date": "1995-11-30",
+            "publisher": "EA Sports",
+            "cover": "covers/1996_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/fb/8b/fifa-video-game-covers_17h9rw8zn8vw41ul160gh1crda.jpg?t=-1302274740"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "editions.edition",
+        "fields": {
+            "year": 4,
+            "edition_name": "FIFA 97",
+            "release_date": "1996-11-16",
+            "publisher": "EA Sports",
+            "cover": "covers/1997_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/16/d4/fifa-video-game-covers_1k16a1qu56b511626wpj5y4uly.jpg?t=-1302275756"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "editions.edition",
+        "fields": {
+            "year": 5,
+            "edition_name": "FIFA: Road to World Cup 98",
+            "release_date": "1997-11-07",
+            "publisher": "EA Sports",
+            "cover": "covers/1998_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/f6/21/fifa-video-game-covers_9qqmji4a9txh12br11akrvx25.jpg?t=-1302275756"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "editions.edition",
+        "fields": {
+            "year": 6,
+            "edition_name": "FIFA 99",
+            "release_date": "1998-11-24",
+            "publisher": "EA Sports",
+            "cover": "covers/1999_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/7e/fb/fifa-video-game-covers_3ip71m8q3neu1nxoh8fi94jbi.jpg?t=-1302275756"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "editions.edition",
+        "fields": {
+            "year": 7,
+            "edition_name": "FIFA 2000",
+            "release_date": "1999-10-26",
+            "publisher": "EA Sports",
+            "cover": "covers/2000_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/5d/da/fifa-video-game-covers_f4d9o10ybn7b1pt90suv69ei3.jpg?t=-1302275756"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "editions.edition",
+        "fields": {
+            "year": 8,
+            "edition_name": "FIFA 2001",
+            "release_date": "2000-11-08",
+            "publisher": "EA Sports",
+            "cover": "covers/2001_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/9e/50/fifa-video-game-covers_1cv9mh5hwaurm11uo3bxiv0oyv.jpg?t=-1302276804"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "editions.edition",
+        "fields": {
+            "year": 9,
+            "edition_name": "FIFA Football 2002",
+            "release_date": "2001-11-02",
+            "publisher": "EA Sports",
+            "cover": "covers/2002_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/5a/af/fifa-video-game-covers_k0zzj5y2sx6412jg3f0mnlcoi.jpg?t=-1302276804"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "editions.edition",
+        "fields": {
+            "year": 10,
+            "edition_name": "FIFA Football 2003",
+            "release_date": "2002-10-25",
+            "publisher": "EA Sports",
+            "cover": "covers/2003_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/3e/d/fifa-video-game-covers_1ervhltq1n0h31xlxx41ytlm4r.jpg?t=-1302276804"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "editions.edition",
+        "fields": {
+            "year": 11,
+            "edition_name": "FIFA Football 2004",
+            "release_date": "2003-10-24",
+            "publisher": "EA Sports",
+            "cover": "covers/2004_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/ee/2/fifa-video-game-covers_1b69tyehcuqk2z2xivy11vhdu.jpg?t=-1302277884"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "editions.edition",
+        "fields": {
+            "year": 12,
+            "edition_name": "FIFA Football 2005",
+            "release_date": "2004-10-08",
+            "publisher": "EA Sports",
+            "cover": "covers/2005_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/f0/27/fifa-video-game-covers_uuadyl2s46xz11ffcambwccvv.jpg?t=-1302278676"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "editions.edition",
+        "fields": {
+            "year": 13,
+            "edition_name": "FIFA 06",
+            "release_date": "2005-09-30",
+            "publisher": "EA Sports",
+            "cover": "covers/2006_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/2a/35/fifa-video-game-covers_116oyw7bk3p431ixqj4d2g7obl.jpg?t=-1302265252"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "editions.edition",
+        "fields": {
+            "year": 14,
+            "edition_name": "FIFA 07",
+            "release_date": "2006-09-25",
+            "publisher": "EA Sports",
+            "cover": "covers/2007_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/ec/c8/fifa-video-game-covers_bzj5fi3obqtj14rfkcpyx1jbd.jpg?t=-1302265252"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "editions.edition",
+        "fields": {
+            "year": 15,
+            "edition_name": "FIFA 08",
+            "release_date": "2007-09-28",
+            "publisher": "EA Sports",
+            "cover": "covers/2008_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/68/5/fifa-video-game-covers_1brp3sgh48uwg109w0fy6ph9eq.png?t=-1302266332"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "editions.edition",
+        "fields": {
+            "year": 16,
+            "edition_name": "FIFA 09",
+            "release_date": "2008-10-03",
+            "publisher": "EA Sports",
+            "cover": "covers/2009_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/e6/b2/fifa-video-game-covers_1r0liwvxujcpm1jb085nq5ab3l.jpg?t=-1302267380"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "editions.edition",
+        "fields": {
+            "year": 17,
+            "edition_name": "FIFA 10",
+            "release_date": "2009-10-02",
+            "publisher": "EA Sports",
+            "cover": "covers/2010_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/e9/7/fifa-video-game-covers_lge13cyxm1ws128azuryfh9pp.jpg?t=-1302268396"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "editions.edition",
+        "fields": {
+            "year": 18,
+            "edition_name": "FIFA 11",
+            "release_date": "2010-10-01",
+            "publisher": "EA Sports",
+            "cover": "covers/2011_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/4d/a7/fifa-video-game-covers_1mw1tg84q8a7y17uys9cbwm1dw.jpg?t=-1302269188"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "editions.edition",
+        "fields": {
+            "year": 19,
+            "edition_name": "FIFA 12",
+            "release_date": "2011-09-30",
+            "publisher": "EA Sports",
+            "cover": "covers/2012_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/49/10/fifa-video-game-covers_1g1zg8dy9s5w817fsrjrfgizi0.jpg?t=-1302270268"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "editions.edition",
+        "fields": {
+            "year": 20,
+            "edition_name": "FIFA 13",
+            "release_date": "2012-09-28",
+            "publisher": "EA Sports",
+            "cover": "covers/2013_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/59/24/fifa-video-game-covers_1jvr2achy5aqb1u67gm98ghxyv.jpg?t=-1302279692"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "editions.edition",
+        "fields": {
+            "year": 21,
+            "edition_name": "FIFA 14",
+            "release_date": "2013-09-27",
+            "publisher": "EA Sports",
+            "cover": "covers/2014_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/29/d7/fifa-video-game-covers_1w1cenpwaexwt1ueb8b0nm1bhp.jpg?t=-1302270268"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "editions.edition",
+        "fields": {
+            "year": 22,
+            "edition_name": "FIFA 15",
+            "release_date": "2014-09-25",
+            "publisher": "EA Sports",
+            "cover": "covers/2015_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/87/c2/fifa-video-game-covers_dc98ubgznnsw12lsaz1crpghc.jpg?t=-1302280740"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "editions.edition",
+        "fields": {
+            "year": 23,
+            "edition_name": "FIFA 16",
+            "release_date": "2015-09-24",
+            "publisher": "EA Sports",
+            "cover": "covers/2016_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/97/8a/fifa-video-game-covers_1oicyqknl49sx1xgmy15dlkcts.jpg?t=-1302271316"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "editions.edition",
+        "fields": {
+            "year": 24,
+            "edition_name": "FIFA 17",
+            "release_date": "2016-09-29",
+            "publisher": "EA Sports",
+            "cover": "covers/2017_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/39/ba/fifa-video-game-covers_12qov2bq12j0j1kd2f8c65h2f9.jpg?t=-1302272332"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "editions.edition",
+        "fields": {
+            "year": 25,
+            "edition_name": "FIFA 18",
+            "release_date": "2017-09-27",
+            "publisher": "EA Sports",
+            "cover": "covers/2018_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/72/b9/fifa-video-game-covers_2vh36mz7jov01ffojgwd6k1u1.jpg?t=-1302273380"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "editions.edition",
+        "fields": {
+            "year": 26,
+            "edition_name": "FIFA 19",
+            "release_date": "2018-09-28",
+            "publisher": "EA Sports",
+            "cover": "covers/2019_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/d4/10/fifa-video-game-covers_1wxeodwzyqyvw1ra3rzov9zq8d.jpg?t=-1302264204"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "editions.edition",
+        "fields": {
+            "year": 27,
+            "edition_name": "FIFA 20",
+            "release_date": "2019-09-27",
+            "publisher": "EA Sports",
+            "cover": "covers/2020_cover.png",
+            "cover_image_url": "https://images.performgroup.com/di/library/GOAL/93/9/fifa-20-eden-hazard-virgil-van-dijk_vkxp4b22z6wj10m6zxve9snmr.png?t=783307916"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "editions.edition",
+        "fields": {
+            "year": 28,
+            "edition_name": "FIFA 21",
+            "release_date": "2020-10-09",
+            "publisher": "EA Sports",
+            "cover": "covers/2021_cover.png",
+            "cover_image_url": "https://www.gamespot.com/a/uploads/scale_super/313/3136061/3710633-eas_fifa21_standard_keyart_vert_rgb.jpg"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "editions.edition",
+        "fields": {
+            "year": 29,
+            "edition_name": "FIFA 22",
+            "release_date": "2021-10-01",
+            "publisher": "EA Sports",
+            "cover": "covers/2022_cover.png",
+            "cover_image_url": "https://media.contentapi.ea.com/content/dam/ea/fifa/fifa-22/ambassadors/images/2021/07/f22-hero-med-cover-athlete-7x2-xl.png.adapt.crop5x2.1455w.png"
+        }
+    }]
