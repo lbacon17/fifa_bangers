@@ -24,7 +24,7 @@
                     <h5>Artist: {{ song.artist }}</h5>
                     <h5>Album: {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}</h5>
                     <h5>
-                        <audio controls src="{{ song.audio }}" type="audio/mpeg">
+                        <audio controls src="../../media/{{ song.audio }}" type="audio/mpeg">
                             Your browser does not support playback of this file.
                         </audio>
                     </h5>

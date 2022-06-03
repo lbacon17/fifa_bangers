@@ -1,7 +1,14 @@
 from django.db import models
+from django.core.files.storage import FileSystemStorage
 from editions.models import Edition, Year
 
 # from django.contrib.postgres.fields import ArrayField
+
+
+class OverwriteStorage(FileSystemStorage):
+    def get_available_name(self, name, max_length=None):
+        self.delete(name)
+        return name
 
 
 class Song(models.Model):
@@ -21,7 +28,7 @@ class Song(models.Model):
     #     default=[],
     # )
     album = models.CharField(max_length=100, null=True, blank=True, default="")
-    audio = models.FileField(upload_to="audio")
+    audio = models.FileField(upload_to="audio", storage=OverwriteStorage())
 
     def __str__(self):
         return self.title
