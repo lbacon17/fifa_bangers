@@ -2,34 +2,93 @@
 {% load static %}
 
 {% block content %}
-    <a href="{% url 'editions' %}">Back to all editions</a>
-    <h1>{{ edition.edition_name }} ({{ edition.year }})</h1>
-    <div class="image-container">
-        {% if edition.cover %}
-            <img src="{{ edition.cover.url }}" alt="{{ edition.edition_name }} cover">
-        {% else %}
-            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ edition.edition_name }}" class="img-thumbnail">
-        {% endif %}
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-6">
-                <h3>Songs from {{ edition.edition_name }}</h3>
+    <div class="container-fluid page-container">
+        <a href="{% url 'editions' %}"><i class="fas fa-chevron-left"></i> Back to all editions</a>
+        <h1>{{ edition.edition_name }} ({{ edition.year }})</h1>
+        <div class="image-container">
+            {% if edition.cover %}
+                <img src="{{ edition.cover.url }}" alt="{{ edition.edition_name }} cover">
+            {% else %}
+                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ edition.edition_name }}" class="img-thumbnail">
+            {% endif %}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h3>Songs from {{ edition.edition_name }}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card text-white bg-primary mb-3">
+                        {% for song in songs %}
+                            <div class="card-body border">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="card-title">{{ song.title }}</h5>
+                                    </div>
+                                </div>
+                                <div class="row card-text">
+                                    <div class="col">
+                                        <span>
+                                            {{ song.artist }} - {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="col text-right">
+                                        <span class="audio-file">
+                                            <audio controls src="../../media/{{ song.audio }}" type="audio/mpeg">
+                                                Your browser does not support playback of this file.
+                                            </audio>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-sm-6">
-                {% for song in songs %}
-                    <h5>Track: {{ song.title }}</h5>
-                    <h5>Artist: {{ song.artist }}</h5>
-                    <h5>Album: {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}</h5>
-                    <h5>
-                        <audio controls src="../../media/{{ song.audio }}" type="audio/mpeg">
-                            Your browser does not support playback of this file.
-                        </audio>
-                    </h5>
-                {% endfor %}
-            </div>
-        </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script>
+        $(function() {
+            $("audio").on("play", function() {
+                $("audio").not(this).each(function(index, audio) {
+                    audio.pause();
+                });
+            });
+        });
+
+        var audios = document.getElementsByTagName("audio");
+        for (let i=0; i < audios.length; i++) {
+            playNextTrack(i);
+        }
+
+        function playNextTrack(i) {
+            audios[i].addEventListener("ended", function() {
+                this.duration = 0;
+                this.pause();
+                audios[i+1].play();
+            }, false);
+        };
+
+        $(function() {
+            $("audio").on("click", function() {
+                this.currentTime += 30;
+            });
+        });
+                // $(function() {
+        //     $('audio').on('ended', function() {
+        //         this.duration = 0;
+        //         $("audio").not(this).each(function(index, audio) {
+        //             audio.play();
+        //         });
+        //         // var nextTrack = $("audio").next();
+        //         // nextTrack.play();
+        //     });
+        // });
+    </script>
 {% endblock %}

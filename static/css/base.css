@@ -5,3 +5,30 @@ html {
 body {
   background: url("/media/fifa_hp_background.png") no-repeat center center fixed;
 }
+
+#topnav {
+  background-color: #bbc2cc;
+}
+
+#topnav a {
+  color: #232323;
+}
+
+.search-bar {
+  padding-top: .5rem;
+}
+
+.search-button {
+  border: 1px 1px solid #99a0aa;
+}
+
+.page-container {
+  padding-top: 3.5rem;
+}
+
+/*--- SONGS ---*/
+
+audio {
+  height: 40px;
+  width: 250px;
+}

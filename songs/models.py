@@ -6,9 +6,9 @@ from editions.models import Edition, Year
 
 
 class OverwriteStorage(FileSystemStorage):
-    def get_available_name(self, name, max_length=None):
-        self.delete(name)
-        return name
+    def get_available_name(self, audio, max_length=None):
+        self.delete(audio)
+        return audio
 
 
 class Song(models.Model):
