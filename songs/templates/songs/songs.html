@@ -2,4 +2,101 @@
 {% load static %}
 
 {% block content %}
+<div class="container-fluid mt-5 pt-5 sorting-container">
+    <div class="row mt-3 px-3">
+        <div class="col-12">
+            <select id="sort-songs" class="custom-select-sm btn-sm border-black">
+                <option value="reset" {% if sort_by == 'None_None' %}selected{% endif %}>
+                    Sort by...
+                </option>
+                <option value="title_asc" {% if sort_by == "title_asc" %}selected{% endif %}>
+                    Title (A-Z)
+                </option>
+                <option value="title_desc" {% if sort_by == "title_desc" %}selected{% endif %}>
+                    Title (Z-A)
+                </option>
+                <option value="artist_asc" {% if sort_by == "artist_asc" %}selected{% endif %}>
+                    Artist (A-Z)
+                </option>
+                <option value="artist_desc" {% if sort_by == "artist_desc" %}selected{% endif %}>
+                    Artist (Z-A)
+                </option>
+                <option value="edition_asc" {% if sort_by == "edition_asc" %}selected{% endif %}>
+                    Edition (oldest first)
+                </option>
+                <option value="edition_desc" {% if sort_by == "edition_desc" %}selected{% endif %}>
+                    Edition (most recent first)
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="container-fluid text-center px-5 my-3">
+    <div class="row mb-5">
+        <div class="col-12">
+            {% if search_term %}
+                {% if songs|length == 0 %}
+                    <h4 class="mb-5">No songs found for "{{ search_term }}".</h4>
+                {% else %}
+                    <h4 class="mb-5">All songs containing "{{ search_term }}". {{ songs|length }} found.</h4>
+                {% endif %}
+            {% else %}
+                {% if categories %}
+                    <h4 class="mb-5">All songs in the category {{ queried_category }}. {{ songs|length }} found.</h4>
+                {% else %}
+                    <h4 class="mb-5">All songs. {{ songs|length }} found.</h4>
+                {% endif %}
+            {% endif %}
+            {% if request.user.is_superuser %}
+                <a href="{% url 'add_song' %}" class="btn btn-success">Add Song</a>
+            {% endif %}
+            <a href="{% url 'songs' %}" class="btn-sm btn btn-primary text-dec-none">View All Songs</a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        {% for song in songs %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="{% url 'song_info' song.id %}" class="text-black">
+                            <img src="/media/{{ song.thumbnail }}" alt="{{ song.title }}" class="card-top h-100 w-100">
+                            <h3 class="card-title pt-2 pb-1 mb-0">
+                                {% if 'artist' in current_sorting %}{{ song.artist }}{% else %}{{ song.title }}{% endif %}
+                            </h3>                            
+                            <p class="mb-0">{% if 'artist' in current_sorting %}{{ song.title }}{% else %}{{ song.artist }}{% endif %}</p>
+                            <p class="mb-0">{% if song.album %}{{ song.album }}{% else %}N/A{% endif %}</p>
+                            <p><small>Edition: {{ song.edition }}</small></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script type="text/javascript">
+    $('#sort-songs').change(function() {
+        var selector = $(this);
+        var currentUrl = new URL(window.location);
+
+        var selectedVal = selector.val();
+        if (selectedVal != 'reset') {
+            var sort = selectedVal.split("_")[0];
+            var direction = selectedVal.split("_")[1];
+
+            currentUrl.searchParams.set("sort", sort);
+            currentUrl.searchParams.set("direction", direction);
+
+            window.location.replace(currentUrl);
+        } else {
+            currentUrl.searchParams.delete("sort");
+            currentUrl.searchParams.delete("direction");
+            window.location.replace(currentUrl);
+        }
+    });
+</script>
 {% endblock %}

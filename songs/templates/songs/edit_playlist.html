@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+{% load ratings %}
+
+{% block content %}
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-12">
+            <h5>
+                <a href="{% url 'playlists' %}">Back to my playlists</a>
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h2>Playlist: {{ playlist.playlist_name }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4>Manage playlist {{ playlist.playlist_name }}</h4>
+            <form action="{% url 'update_playlist_name' playlist.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="playlist_name">Playlist name</label>
+                <input type="text" value="{{ playlist.playlist_name }}" name="playlist_name">
+                <button type="submit" class="btn-small btn-success">Update name</button>
+            </form>
+            <h6>Add songs</h6>
+            <form action="{% url 'manage_playlist' playlist.id %}" method="GET" id="song-finder-form">
+                {% csrf_token %}
+                <p class="mb-2">
+                    <label for="qq"></label>
+                    <input class="form-control border border-black search-bar rounded-0" id="song-finder" type="text" name="qq" placeholder="Search" aria-label="Search">
+                    <div class="d-none">
+                        <button type="button" class="song-finder-button"></button>
+                    </div>
+                </p>
+            </form>
+            <form action="{% url 'manage_playlist' playlist.id %}" method="POST" enctype="multipart/form-data" id="select-songs">
+                {% csrf_token %}
+                    <div class="row" id="songs-box">
+                    {% for song in page_obj %}
+                        <div class="col-2">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <img src="/media/{{ song.thumbnail }}" alt="{{ song.title }}" class="card-top h-25 w-25">
+                                    <h6 class="card-title">
+                                        <label for="songs">
+                                            <p class="mb-0"><small>{{ song.title }}</small></p>
+                                            <p class="mb-0"><small>{{ song.artist }}</small></p>
+                                        </label>
+                                        <input type="checkbox" name="{{ song.title }}" id="{{ song.title }}">
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                        </span>
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+                <button type="submit" class="btn-success">Add Songs</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-1 mb-2">
+        <div class="col-12 col-sm-4">
+            <div class="sort-select-wrapper">
+                <select id="sort-selector" class="rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="artist_asc" {% if current_sorting == 'artist_asc' %}selected{% endif %}>Artist (A-Z)</option>
+                    <option value="artist_desc" {% if current_sorting == 'artist_desc' %}selected{% endif %}>Artist (Z-A)</option>
+                    <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Song title (A-Z)</option>
+                    <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Song title (Z-A)</option>
+                    <option value="album_asc" {% if current_sorting == 'album_asc' %}selected{% endif %}>Album (A-Z)</option>
+                    <option value="album_desc" {% if current_sorting == 'album_desc' %}selected{% endif %}>Album (Z-A)</option>
+                    <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (High to low)</option>
+                    <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (Low to high)</option>
+                    <option value="shuffle" {% if current_sorting == 'shuffle' %}selected{% endif %}>Shuffle!</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-white bg-primary mb-3">
+                {% for song in songs %}
+                    <div class="card-body border">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="card-title">{{ song.title }}</h5>
+                            </div>
+                        </div>
+                        <div class="row card-text">
+                            <div class="col">
+                                <span>
+                                    {{ song.artist }} - {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}
+                                    {% ratings song %}
+                                </span>
+                                <br>
+                                <p class="mb-0">
+                                    <small>Edition: {{ song.edition }}</small>
+                                </p>
+                            </div>
+                            <div class="col text-right">
+                                <span class="audio-file">
+                                    <audio controls src="../../media/{{ song.audio }}" type="audio/mpeg">
+                                        Your browser does not support playback of this file.
+                                    </audio>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script>
+        var songSearch = "";
+        $("#song-finder").keydown(function(e){
+            if (e.keyCode == 13) 
+                console.log("Hello")
+                $("#song-finder-form").click();
+                $("#song-finder-form").click(function(event) {
+                    event.preventDefault();
+                    songSearch = $("#song-finder").val();
+                    console.log(songSearch);
+                });
+            }
+        );    
+    </script>
+    <script>
+        $(function() {
+            $("audio").on("play", function() {
+                $("audio").not(this).each(function(index, audio) {
+                    audio.pause();
+                });
+            });
+        });
+
+        var audios = document.getElementsByTagName("audio");
+        for (let i=0; i < audios.length; i++) {
+            playNextTrack(i);
+        }
+
+        $(function() {
+            $("audio").on("click", function() {
+                this.currentTime += 30;
+            });
+        });
+        
+        function playNextTrack(i) {
+            audios[i].addEventListener("ended", function() {
+                this.duration = 0;
+                this.pause();
+                audios[i+1].play();
+            }, false);
+        };
+    </script>
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+            var selectedValue = selector.val();
+            if (selectedValue != "reset" && selectedValue != "shuffle") {
+                var sort = selectedValue.split("_")[0];
+                var direction = selectedValue.split("_")[1];
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+                window.location.replace(currentUrl);
+            } else if (selectedValue == "shuffle") {
+                var sort = selectedValue;
+                currentUrl.searchParams.set("sort", sort);
+                direction = selectedValue.split("_")
+                if (direction) {
+                    currentUrl.searchParams.delete("direction")
+                }
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
+{% endblock %}

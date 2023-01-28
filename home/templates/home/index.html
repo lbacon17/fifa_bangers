@@ -10,9 +10,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            
+    <div class="container mt-5">
+        <div class="row">
+            {% if request.user.is_authenticated %}
+                <div class="col-12">
+                    <h3 class="mt-5">Welcome, {{ user.username }}</h3>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,15 @@
+[
+    {
+        "pk": 1,
+        "model": "songs.song",
+        "fields": {
+            "edition": 1,
+            "title": "Track 1",
+            "artist": "Jeff Dyck",
+            "album": "",
+            "audio": "audio/fifa_international_soccer_fifa_94_songs_full_soundtrack_list.mp4",
+            "thumbnail": "/song_thumbnails/music_icon.png",
+            "favourites": [1]
+        }
+    }
+]

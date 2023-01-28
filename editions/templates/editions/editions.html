@@ -11,12 +11,18 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                {% for edition in editions %}
-                    <h3><a href="{% url 'get_edition' edition.id %}">{{ edition.year }}</a></h3>
-                {% endfor %}
-            </div>
+        <div class="row mt-5 px-5 px-sm-0">
+            {% for edition in editions %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img src="/media/ea_fifa_cover.png" alt="{{ edition.name }}" class="card-top h-100 w-100">
+                            <h3 class="card-title pt-2 pb-1 mb-0"><a href="{% url 'get_edition' edition.id %}" class="edition-link">{{ edition.year }}</a></h3>
+                            <p class="card-text mb-0">{{ edition.edition_name }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

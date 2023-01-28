@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container pt-5 mt-5">    
+    {% for favourite in favourite_songs %}
+        <div class="row">
+            <div class="col-10">
+                <p class="mt-5">{{ favourite.title }} - {{ favourite.artist }}</p>
+            </div>
+            <div class="col-2">
+                <button class="btn-danger btn-small">
+                    <a href="" class="text-dec-none">Remove from favourites</a>
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

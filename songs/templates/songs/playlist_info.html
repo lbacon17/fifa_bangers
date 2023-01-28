@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+{% load ratings %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'songs/css/songs.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'editions' %}" class="text-black"><i class="fas fa-chevron-left" tooltip="tooltip" data-toggle="tooltip" title="Back to my playlists"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h2>Playlist: {{ playlist.playlist_name }}</h2>
+        </div>
+    </div>
+    <div class="row mt-1 mb-2">
+        <div class="col-12 col-sm-4">
+            <div class="sort-select-wrapper">
+                <select id="sort-selector" class="rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="artist_asc" {% if current_sorting == 'artist_asc' %}selected{% endif %}>Artist (A-Z)</option>
+                    <option value="artist_desc" {% if current_sorting == 'artist_desc' %}selected{% endif %}>Artist (Z-A)</option>
+                    <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Song title (A-Z)</option>
+                    <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Song title (Z-A)</option>
+                    <option value="album_asc" {% if current_sorting == 'album_asc' %}selected{% endif %}>Album (A-Z)</option>
+                    <option value="album_desc" {% if current_sorting == 'album_desc' %}selected{% endif %}>Album (Z-A)</option>
+                    <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (High to low)</option>
+                    <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (Low to high)</option>
+                    <option value="shuffle" {% if current_sorting == 'shuffle' %}selected{% endif %}>Shuffle!</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4">
+            <h5>
+                <a href="{% url 'manage_playlist' playlist.id %}">Edit Playlist</a>
+            </h5>
+        </div>
+        <div class="col-12 col-sm-4">
+            <h5>
+                <button type="button" class="btn-small btn-danger p-1 text-dec-none" data-toggle="modal" data-target="#playlist-{{ playlist.id }}">
+                    Delete Playlist
+                </button>
+                {% include 'songs/includes/delete_playlist_modal_popup.html' %}
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-white song-table mb-3">
+                {% for song in songs %}
+                    <div class="card-body border">
+                        <a href="{% url 'song_info' song.id %}" class="text-std">                            
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="card-title">{{ song.title }}</h5>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="row card-text">
+                            <div class="col-12 col-sm-6">
+                                <span>
+                                    {{ song.artist }} - {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}
+                                    {% ratings song %}
+                                </span>
+                                <h6>
+                                    <small>Edition: {{ song.edition }}</small>
+                                </h6>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 col-md-12 col-lg-8">
+                                        <span class="audio-file">
+                                            <audio controls src="../../media/{{ song.audio }}" type="audio/mpeg" class="h-75">
+                                                Your browser does not support playback of this file.
+                                            </audio>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <span class="remove-song-button">
+                                            <small>
+                                                <button type="button" class="btn-small btn-danger p-1 text-dec-none" data-toggle="modal" data-target="#song-{{ song.id }}">
+                                                    Remove
+                                                </button>
+                                                {% include 'songs/includes/remove_song_modal_popup.html' %}
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script>
+        $(function() {
+            $("audio").on("play", function() {
+                $("audio").not(this).each(function(index, audio) {
+                    audio.pause();
+                });
+            });
+        });
+
+        var audios = document.getElementsByTagName("audio");
+        for (let i=0; i < audios.length; i++) {
+            playNextTrack(i);
+        }
+
+        $(function() {
+            $("audio").on("click", function() {
+                this.currentTime += 30;
+            });
+        });
+        
+        function playNextTrack(i) {
+            audios[i].addEventListener("ended", function() {
+                this.duration = 0;
+                this.pause();
+                audios[i+1].play();
+            }, false);
+        };
+    </script>
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+            var selectedValue = selector.val();
+            if (selectedValue != "reset" && selectedValue != "shuffle") {
+                var sort = selectedValue.split("_")[0];
+                var direction = selectedValue.split("_")[1];
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+                window.location.replace(currentUrl);
+            } else if (selectedValue == "shuffle") {
+                var sort = selectedValue;
+                currentUrl.searchParams.set("sort", sort);
+                direction = selectedValue.split("_")
+                if (direction) {
+                    currentUrl.searchParams.delete("direction")
+                }
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
+{% endblock %}

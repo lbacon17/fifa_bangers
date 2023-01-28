@@ -1,0 +1,70 @@
+#select-songs.paginated {
+    height: 300px;
+    width: 500px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border: 2px solid #cce3f1;
+    padding: 0;
+    border-radius: 1%;
+}
+  
+fieldset {
+    opacity: 0;
+    padding: 1em;
+    transition: opacity 1s ease-in-out;
+    height: 0;
+    width: 100%;
+    display: none;
+    animation-direction: reverse;
+    animation-duration: 800ms;
+    animation-iteration-count: 1;
+    animation-name: fade;
+}
+
+.current {
+    animation-direction: normal;
+    height: initial;
+    opacity: 1;
+    display: initial;
+}  
+      
+.pages {
+    width: 100%;
+    height: 3em;
+    bottom: 0;
+    text-align: center;
+    position: absolute;
+    box-sizing: border-box;
+}
+  
+input {
+    padding: 0.3em;
+    margin: 1px;
+}
+
+input[type=text] {
+    display: block;
+}
+
+label {
+    display: inline-block;
+}
+  
+progress {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+  
+@keyframes fade {
+    from {
+        opacity: 0;    
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -52,7 +52,9 @@ INSTALLED_APPS = [
     "home",
     "editions",
     "songs",
+    "profiles",
     "crispy_forms",
+    "star_ratings",
 ]
 
 MIDDLEWARE = [
@@ -102,6 +104,7 @@ SITE_ID = 1
 
 WSGI_APPLICATION = "fifa_bangers.wsgi.application"
 
+ACCOUNT_ADAPTER = "fifa_bangers.users.adapter.MyAccountAdapter"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -163,3 +166,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "fifabangers@example.com"
+
+STAR_RATINGS_RERATE = False
+STAR_RATINGS_CLEARABLE = False
+STAR_RATINGS_STAR_HEIGHT = 16

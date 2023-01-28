@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid mt-5 pt-5">
+    <div class="row">
+        <div class="col-12">
+            {% if request.user.is_authenticated %}
+                <p class="mb-3">
+                    <a href="{% url 'create_playlist' %}" class="btn btn-success text-dec-none"><i class="fas fa-folder-plus"></i> New Playlist</a>
+                </p>
+                <div class="card text-white song-table mb-3">
+                    {% for playlist in playlists %}
+                        <div class="card-body border">
+                            <div class="row">
+                                <div class="col-12 col-sm-4">
+                                    <h5 class="card-title">
+                                        <a href="{% url 'playlist_info' playlist.id %}" class="text-std">
+                                            {{ playlist.playlist_name }}
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <a href="{% url 'manage_playlist' playlist.id %}" class="btn btn-primary p-1 text-dec-none">Edit</a>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <button type="button" class="btn-small btn-danger p-1 text-dec-none" data-toggle="modal" data-target="#playlist-{{ playlist.id }}">
+                                        Delete
+                                    </button>
+                                    {% include 'songs/includes/delete_playlist_modal_popup.html' %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

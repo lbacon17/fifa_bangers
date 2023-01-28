@@ -9,9 +9,40 @@
                 <li class="nav-item">
                     <a href="{% url 'editions' %}" class="nav-link">Editions</a>
                 </li>
-                {% if request.user.is_superuser %}
-                    <li class="nav-item">
-                        <a href="" class="nav-link">Admin</a>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="user-dropdown" role="button" data-toggle="dropdown" aris-haspopup="true" aria-expanded="false">
+                            My Account
+                        </a>
+                        <ul class="dropdown-menu" id="topnav" aria-labelledby="user-dropdown">
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">Admin</a>
+                                </li>
+                            {% endif %}
+                            <li><a href="{% url 'profile' user.id user.username %}" class="dropdown-item">My Profile</a></li>
+                            <li><a href="{% url 'playlists' %}" class="dropdown-item">Manage Playlists</a></li>
+                            <li><a href="{% url 'user_favourites' %}" class="dropdown-item">Favourites</a></li>
+                            <li>
+                                <form action="{% url 'account_logout' %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if redirect_field_value %}
+                                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                    {% endif %}
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="authentication-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Login/Register
+                        </a>
+                        <ul class="dropdown-menu" id="topnav" aria-labelledby="authentication-dropdown">
+                            <li><a href="{% url 'account_login' %}" class="dropdown-item">Login</a></li>
+                            <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>
+                        </ul>
                     </li>
                 {% endif %}
             </ul>

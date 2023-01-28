@@ -1,47 +1,74 @@
 {% extends "base.html" %}
 {% load static %}
+{% load ratings %}
 
 {% block content %}
-    <div class="container-fluid page-container">
-        <a href="{% url 'editions' %}"><i class="fas fa-chevron-left"></i> Back to all editions</a>
-        <h1>{{ edition.edition_name }} ({{ edition.year }})</h1>
-        <div class="image-container">
+    <div class="container-fluid page-container mt-2">
+        <a href="{% url 'editions' %}" class="text-black"><i class="fas fa-chevron-left" tooltip="tooltip" data-toggle="tooltip" title="Back to all editions"></i></a>
+        <!-- <h1>{{ edition.edition_name }} ({{ edition.year }})</h1> -->
+        <!-- <div class="image-container h-50">
             {% if edition.cover %}
-                <img src="{{ edition.cover.url }}" alt="{{ edition.edition_name }} cover">
+                <img src="{{ edition.cover.url }}" alt="{{ edition.edition_name }} cover" class="w-50 h-50">
             {% else %}
-                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ edition.edition_name }}" class="img-thumbnail">
+                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ edition.edition_name }}" class="img-thumbnail w-50 h-50">
             {% endif %}
-        </div>
+        </div> -->
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <h3>Songs from {{ edition.edition_name }}</h3>
                 </div>
             </div>
+            <div class="row mt-1 mb-2">
+                <div class="col-12">
+                    <div class="sort-select-wrapper">
+                        <select id="sort-selector" class="rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                            <option value="artist_asc" {% if current_sorting == 'artist_asc' %}selected{% endif %}>Artist (A-Z)</option>
+                            <option value="artist_desc" {% if current_sorting == 'artist_desc' %}selected{% endif %}>Artist (Z-A)</option>
+                            <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Song title (A-Z)</option>
+                            <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Song title (Z-A)</option>
+                            <option value="album_asc" {% if current_sorting == 'album_asc' %}selected{% endif %}>Album (A-Z)</option>
+                            <option value="album_desc" {% if current_sorting == 'album_desc' %}selected{% endif %}>Album (Z-A)</option>
+                            <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (High to low)</option>
+                            <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (Low to high)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card text-white bg-primary mb-3">
+                    <div class="card text-white song-table mb-3">
                         {% for song in songs %}
                             <div class="card-body border">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h5 class="card-title">{{ song.title }}</h5>
+                                <a href="{% url 'song_info' song.id %}" class="text-std">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5 class="card-title">
+                                                {% if 'artist' in current_sorting %}
+                                                    {{ song.artist }}
+                                                {% else %}
+                                                    {{ song.title }}
+                                                {% endif %}
+                                            </h5>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row card-text">
-                                    <div class="col">
-                                        <span>
-                                            {{ song.artist }} - {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}
-                                        </span>
+                                    <div class="row card-text">
+                                        <div class="col-8">
+                                            <span>
+                                                {% if 'artist' in current_sorting %}{{ song.title }}{% else %}{{ song.artist }}{% endif %} - {% if song.album %}{{ song.album }}{% else %}N/A{% endif %}
+                                                {% ratings song %}
+                                            </span>
+                                        </div>
+                                        <div class="col text-right">
+                                            <span class="audio-file">
+                                                <audio controls src="../../media/{{ song.audio }}" type="audio/mpeg" class="h-75">
+                                                    Your browser does not support playback of this file.
+                                                </audio>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div class="col text-right">
-                                        <span class="audio-file">
-                                            <audio controls src="../../media/{{ song.audio }}" type="audio/mpeg">
-                                                Your browser does not support playback of this file.
-                                            </audio>
-                                        </span>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         {% endfor %}
                     </div>
@@ -53,6 +80,9 @@
 
 {% block postloadjs %}
 {{ block.super }}
+    <script>
+        $("[data-toggle='tooltip']").tooltip();
+    </script>
     <script>
         $(function() {
             $("audio").on("play", function() {
@@ -67,6 +97,12 @@
             playNextTrack(i);
         }
 
+        $(function() {
+            $("audio").on("click", function() {
+                this.currentTime += 30;
+            });
+        });
+        
         function playNextTrack(i) {
             audios[i].addEventListener("ended", function() {
                 this.duration = 0;
@@ -75,11 +111,6 @@
             }, false);
         };
 
-        $(function() {
-            $("audio").on("click", function() {
-                this.currentTime += 30;
-            });
-        });
                 // $(function() {
         //     $('audio').on('ended', function() {
         //         this.duration = 0;
@@ -90,5 +121,23 @@
         //         // nextTrack.play();
         //     });
         // });
+    </script>
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+            var selectedValue = selector.val();
+            if (selectedValue != "reset") {
+                var sort = selectedValue.split("_")[0];
+                var direction = selectedValue.split("_")[1];
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+                window.location.replace(currentUrl);
+            }
+        })
     </script>
 {% endblock %}

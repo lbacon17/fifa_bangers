@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 from .models import Edition, Year
 from .forms import EditionForm, YearForm
 from songs.models import Song
@@ -25,12 +26,29 @@ def all_editions_and_years(request):
 
 
 def get_edition(request, edition_id):
+    sort = None
+    direction = None
     edition = get_object_or_404(Edition, pk=edition_id)
     songs = Song.objects.filter(edition=edition)
+
+    if request.GET:
+        if "sort" in request.GET:
+            sortkey = request.GET["sort"]
+            sort = sortkey
+            if sortkey == "rating":
+                sortkey = "rating__average"
+            if "direction" in request.GET:
+                direction = request.GET["direction"]
+                if direction == "desc":
+                    sortkey = f"-{sortkey}"
+            songs = songs.order_by(sortkey)
+
+    current_sorting = f"{sort}_{direction}"
     template = "editions/get_edition.html"
     context = {
         "edition": edition,
         "songs": songs,
+        "current_sorting": current_sorting,
     }
     return render(request, template, context)
 

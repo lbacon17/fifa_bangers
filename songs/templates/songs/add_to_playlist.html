@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-12">
+            <p class="mb-0">Select playlist to add {{ song.title }} to.</p>
+            <form action="{% url 'add_to_playlist' song.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="playlist">Select playlist</label>
+                {% for playlist in playlists %}
+                    <label for="playlist">{{ playlist.playlist_name }}</label>
+                    <input type="checkbox" name="{{ playlist.playlist_name }}" id="{{ playlist.playlist_name }}">
+                {% endfor %}
+                <button type="submit" class="btn btn-success">Add to Playlist</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
